@@ -701,7 +701,7 @@ export default function App() {
             onClick={() => fileInputRef.current?.click()}
             style={{ border: `1.5px dashed ${dragActive ? ACCENT : RULE}`, background: dragActive ? `${ACCENT}0A` : "transparent", borderRadius: 4, padding: "56px 32px", textAlign: "center", cursor: "pointer" }}
           >
-            <input ref={fileInputRef} type="file" accept=".csv" style={{ display: "none" }} onChange={(e) => processFile(e.target.files?.[0])} />
+            <input ref={fileInputRef} type="file" accept=".csv" style={{ display: "none" }} onChange={(e) => { const file = e.target.files?.[0]; processFile(file); e.target.value = ""; }} />
             <Upload size={28} color={MUTED} style={{ marginBottom: 14 }} />
             <div style={{ fontFamily: "'Fraunces', serif", fontSize: 18, color: INK, marginBottom: 6 }}>
               Drop a CSV file, or click to browse
@@ -930,3 +930,4 @@ export default function App() {
     </div>
   );
 }
+
